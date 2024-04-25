@@ -22,9 +22,10 @@ def signup():
                 flash('Email already exists. Please use a different email.', 'danger')
                 return render_template('signup.html')
 
-        # Insert the new user into the database
-        cursor.execute('INSERT INTO Users (UserName, UserEmail, UserPassword) VALUES (?, ?, ?)',
-                    (name, email, hashed_password))
+            # Insert the new user into the database
+            cursor.execute('INSERT INTO Users (UserName, UserEmail, UserPassword) VALUES (?, ?, ?)',
+                        (name, email, hashed_password))
+        
         flash('Sign up successful! You can now log in.', 'success')
         return redirect(url_for('login'))
 
