@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h2>Edit Prompt</h2>
+    <form id="addPromptForm">
+        <div class="mb-3">
+            <label for="promptTitle" class="form-label">Prompt Title</label>
+            <input type="text" class="form-control" id="promptTitle" value="{{ prompt.PromptTitle}}" name="promptTitle"
+            maxlength="120" required>
+        </div>
+        <div class="mb-3">
+            <label for="promptDescription" class="form-label">Prompt Description</label>
+            <input class="form-control" id="promptDescription" name="promptDescription" rows="3"
+            maxlength="120" value="{{ prompt.PromptDescription }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="promptInstruction" class="form-label">Prompt Instruction</label>
+            <textarea type="text" class="form-control" id="promptInstruction"
+                name="promptInstruction" required>{{ prompt.promptInstruction }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="iconUpload" class="form-label">Icon</label>
+            <input type="file" class="form-control" id="iconUpload" name="promptIcon" accept="image/*">
+        </div>
+        <div class="mb-3">
+            <label for="temperatureSlider" class="form-label">Temperature:</label> <span
+                id="temperatureValue">0.5</span>
+            <input type="range" class="form-range" name="promptTemperature" min="0" max="1.0"
+                value="{{ prompt.promptTemperature }}" step="0.01" id="temperatureSlider">
+        </div>
+        <div class="mb-3">
+            <label for="modelSelect" class="form-label">Model</label>
+            <select class="form-control" id="modelSelect" name="promptModel">
+                <option value="gemini-pro" {% if prompt.PromptModel=="gemini-pro" %}selected{% endif %}>Gemini-Pro
+                </option>
+                <option value="gemini-pro-vision" {% if prompt.PromptModel=="gemini-pro-vision" %}selected{% endif %}>
+                    Gemini-Pro-Vision</option>
+                <option value="gemini-1.5-pro-latest" {% if prompt.PromptModel=="gemini-1.5-pro-latest" %}selected{%
+                    endif %}>Gemini-1.5-Pro</option>
+            </select>
+        </div>
+
+        <label for="conversationPairs" class="form-label">Starter Conversation</label>
+        <ul id="conversationPairs" class="list-group mb-3">
+            {% for i in range(0, conversation_pairs|length, 2) %}
+            <li class="list-group-item">
+                <div class="input-group">
+                    <span class="input-group-text">User</span>
+                    <textarea style="resize: vertical" class="form-control" rows="2" required
+                        name="userText[]">{{ conversation_pairs[i].PromptContent }}</textarea>
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Model</span>
+                    <textarea style="resize: vertical" class="form-control" rows="2" required
+                        name="modelResponse[]">{{ conversation_pairs[i+1].PromptContent }}</textarea>
+                </div>
+                {% if i > 0 %}
+                <button type="button" class="delete-btn">&times; Remove Group</button>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+        <div id="addMore" class="add-more-row mb-3">
+            <i class="bi bi-plus-square"></i> Add More Starter Conversation
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-submit">Submit</button>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#addMore').click(function () {
+            let newItem = $('.list-group-item:first').clone().find('textarea').val('').end();
+
+            let deleteButton = $('<button>')
+                .addClass('delete-btn')
+                .html('&times; Remove Group')
+                .click(function () {
+                    $(this).closest('li').remove();
+                });
+
+            newItem.append(deleteButton);
+            $('#conversationPairs').append(newItem);
+        });
+
+        // Handle dynamic deletion of conversation pairs using event delegation
+        $('#conversationPairs').on('click', '.delete-btn', function () {
+            $(this).closest('li').remove();
+        });
+
+        $('#temperatureSlider').on('input', function () {
+            $('#temperatureValue').text(parseFloat($(this).val()).toFixed(2));
+        });
+
+        $('#addPromptForm').submit(function (event) {
+            event.preventDefault();
+
+            var formData = new FormData(this);
+            var conversation = [];
+
+            $('#conversationPairs .list-group-item').each(function () {
+                var userText = $(this).find('textarea:eq(0)').val();
+                var modelResponse = $(this).find('textarea:eq(1)').val();
+                conversation.push({ userText, modelResponse });
+            });
+
+            formData.append('conversation', JSON.stringify(conversation));
+            formData.append('promptId', '{{ prompt.PromptID }}');
+
+            // Submit form data via AJAX
+            $.ajax({
+                url: '/update_prompt',
+                type: 'POST',
+                processData: false,
+                contentType: false,
+                data: formData,
+                success: function () {
+                    window.location.href = '/library';
+                },
+                error: function (xhr) {
+                    alert('Error submitting form: ' + xhr.responseText);
+                }
+            });
+        });
+
+        // Initialize the temperature display
+        $('#temperatureValue').text(parseFloat($('#temperatureSlider').val()).toFixed(2));
+    });
+</script>
+{% endblock %}

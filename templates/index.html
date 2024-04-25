@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<div class="hero-section text-white text-center"
+    style="background: linear-gradient(to bottom, #122c4b, #2575fc); padding: 50px 20px;">
+    <h1>Welcome to Gemabry</h1>
+    <p>Your gateway to a vibrant community-driven AI Prompt Library!</p>
+    <a href="/library" class="btn btn-lg btn-light mt-3">Explore Library</a>
+</div>
+
+<!-- Features Section -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-journal-code" style="font-size: 2rem; color: #2575fc;"></i>
+                    <h5 class="card-title mt-3">Diverse Prompts</h5>
+                    <p class="card-text">Explore a wide array of curated AI prompts spanning various categories and
+                        styles.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-people-fill" style="font-size: 2rem; color: #2575fc;"></i>
+                    <h5 class="card-title mt-3">Community Driven</h5>
+                    <p class="card-text">Powered by the creativity and insights of our user community around the globe.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-intersect" style="font-size: 2rem; color: #2575fc;"></i>
+                    <h5 class="card-title mt-3">User-Friendly Interface</h5>
+                    <p class="card-text">Navigate through Gemabry's intuitive interface designed for effortless
+                        exploration and interaction.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if not session['user_id'] %}
+<div class="text-center mt-5 py-4" style="background-color: #f4f4f9;">
+    <h2>Join Our Community</h2>
+    <p>Become a part of our growing community and contribute to the ever-expanding world of AI prompts.</p>
+    <a href="/signup" class="btn btn-primary">Sign Up Now</a>
+</div>
+{% endif %}
+{% endblock %}

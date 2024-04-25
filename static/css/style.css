@@ -1,0 +1,566 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.navbar-custom {
+    background-color: #122c4b;
+    padding: 10px;
+}
+
+/* Navbar Brand Styling */
+.navbar-brand {
+    color: #fff;
+    /* Text color */
+    font-weight: bold;
+    /* Bold font */
+}
+
+/* Navbar Links Styling */
+.navbar-nav .nav-link {
+    color: #fff;
+    /* Text color */
+    padding: 0.5rem 1rem;
+    /* Padding around links */
+    margin: 0 0.25rem;
+    /* Spacing between links */
+    border-radius: 15px;
+    /* Rounded corners */
+    transition: background-color 0.3s;
+    /* Smooth transition for background color */
+}
+
+/* Navbar Links Hover Effect */
+.navbar-nav .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    /* Background color on hover */
+}
+
+/* Container Styling */
+.container-custom {
+    margin-top: 20px;
+    /* Top margin */
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    /* Drop shadow */
+    border-radius: 10px;
+    /* Rounded corners */
+    padding: 20px;
+    /* Padding */
+}
+
+/* style.css */
+
+/* Override Bootstrap primary button color */
+.btn-primary {
+    background-color: #2575fc;
+    /* New primary color */
+    border-color: #2575fc;
+    /* Border color */
+}
+
+/* Hover effect for primary button */
+.btn-primary:hover {
+    background-color: #16428f;
+    /* Darker shade on hover */
+    border-color: #16428f;
+}
+
+/* Focus effect for primary button */
+.btn-primary:focus {
+    box-shadow: 0 0 0 0.2rem rgba(51, 146, 255, 0.5);
+    /* Adjust shadow on focus */
+}
+
+.btn-primary:active {
+    background-color: #474747;
+    border-color: #474747;
+}
+
+.btn-secondary {
+    background-color: #505050;
+    border-color: #505050;
+}
+
+.btn-secondary:hover {
+    background-color: #303030;
+    border-color: #303030;
+}
+
+.btn-secondary:focus {
+    box-shadow: 0 0 0 0.2rem #50505044;
+}
+
+.btn-secondary:active {
+    background-color: #505050;
+    border-color: #505050;
+}
+
+.btn-outline-secondary.active {
+    background-color: #505050;
+    border-color: #505050; 
+}
+
+/* Custom alert colors */
+.alert {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    /* Drop shadow */
+}
+
+.alert-warning {
+    color: #ffffff;
+    /* Darker shade of orange */
+    background-color: #9e5400;
+    /* Lighter background color */
+    border-color: #9e5400;
+    /* Lighter border color */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    /* Drop shadow */
+}
+
+.alert-success {
+    color: #ffffff;
+    /* Darker shade of green */
+    background-color: #155724;
+    /* Lighter background color */
+    border-color: #155724;
+    /* Lighter border color */
+}
+
+.alert-danger {
+    color: #ffffff;
+    /* Darker shade of red */
+    background-color: #721c24;
+    /* Lighter background color */
+    border-color: #721c24;
+    /* Lighter border color */
+}
+
+/* Styling adjustments */
+#messages {
+    min-height: 60vh;
+    max-height: 60vh;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.message {
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    line-height: 1.6;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    /* Optional: Add a shadow effect */
+}
+
+.user {
+    background-color: #5eb7ff;
+    border-bottom-right-radius: 2px;
+}
+
+.ai {
+    background-color: #bce0ad;
+    border-bottom-left-radius: 2px;
+}
+
+.preuser,
+.preai {
+    border: 2px solid;
+    /* Apply a solid border */
+    padding: 8px;
+    /* Sufficient padding around the text */
+    border-radius: 20px;
+    /* Maintain rounded corners for consistency */
+    margin-bottom: 10px;
+    background-color: transparent;
+    /* No background color, just a border */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    /* Optional: Add a shadow effect */
+}
+
+.preuser {
+    border-color: #5eb7ff;
+    border-bottom-right-radius: 2px;
+}
+
+.preai {
+    border-color: #bce0ad;
+    border-bottom-left-radius: 2px;
+}
+
+.loader {
+    vertical-align: middle;
+    display: inline-block;
+    border: 4px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 4px solid #000000;
+    width: 20px;
+    height: 20px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.input-group {
+    display: flex;
+    align-items: stretch;
+    /* Ensures that the children of input-group fill the available height */
+
+}
+
+.table-container {
+    /* Additional class for table wrapping */
+    display: inline-block;
+    width: auto;
+    overflow-x: auto;
+    /* Allows table to be scrollable horizontally if needed */
+}
+
+.form-control {
+    resize: none;
+    /* Prevents resizing the textarea */
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    color: #333;
+    /* Adjust color to fit your design */
+    cursor: pointer;
+}
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+    width: 5px;
+    /* width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+    /* color of the tracking area */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    /* color of the scroll thumb */
+    border-radius: 20px;
+    /* roundness of the scroll thumb */
+    border: transparent;
+    /* creates padding around scroll thumb */
+}
+
+/* Highlight the selected chat card */
+.card.selected {
+    background-color: #e6e6e6;
+    border: 2px solid #333333;
+}
+
+#mychats {
+    border: 1px solid #dae0e4;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+#chatWindow {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effects for cards */
+.card-hover-shadow:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+/* Styling for icons to increase visibility and add some padding */
+.bi-pencil-square,
+.bi-trash {
+    font-size: 1.2em;
+}
+
+.dateText {
+    font-size: 0.75em;
+}
+
+label {
+    font-weight: bold;
+}
+
+/* Add More button */
+#addMore {
+    cursor: pointer;
+    text-align: center;
+    background-color: #bfdeff;
+    /* Blue color */
+    color: #000000;
+    /* White text */
+    border-radius: 0.375rem;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+#addMore:hover {
+    background-color: #62aeff;
+    /* Slightly darken on hover for feedback */
+}
+
+/* Center submit button */
+.btn-submit {
+    display: block;
+    margin: 0 auto;
+    /* Center horizontally */
+}
+
+.delete-btn {
+    cursor: pointer;
+    float: right;
+    border: none;
+    background: none;
+    font-size: 14px;
+}
+
+.delete-btn:hover {
+    opacity: 0.7;
+}
+
+
+
+label {
+    font-weight: bold;
+}
+
+/* Add More button */
+#addMore {
+    cursor: pointer;
+    text-align: center;
+    background-color: #bfdeff;
+    /* Blue color */
+    color: #000000;
+    /* White text */
+    border-radius: 0.375rem;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+#addMore:hover {
+    background-color: #62aeff;
+    /* Slightly darken on hover for feedback */
+}
+
+/* Center submit button */
+.btn-submit {
+    display: block;
+    margin: 0 auto;
+    /* Center horizontally */
+}
+
+.delete-btn {
+    cursor: pointer;
+    float: right;
+    border: none;
+    background: none;
+    font-size: 14px;
+}
+
+.delete-btn:hover {
+    opacity: 0.7;
+}
+
+
+/* Library */
+.library-card {
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+}
+
+.library-card:hover {
+    transform: translateY(-5px);
+}
+
+.library-card-img-top {
+    height: 180px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.library-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.library-card-content {
+    position: relative;
+    padding-bottom: 50px;
+}
+
+.library-view-prompt {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.model-badge {
+    position: absolute;
+    left: 12px;
+    bottom: 50px; /* Adjust this value to place the badge right above the button */
+  }
+
+/* Prompt Page */
+
+.black-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    /* White with transparency */
+    pointer-events: none;
+    /* Ensures click events pass through the overlay */
+}
+
+.overlay-text {
+    position: relative;
+    /* Centered in flexbox */
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+    text-align: center;
+}
+
+.prompt-title {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.prompt-description {
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+.btn-prompts {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.detail-section {
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.detail-view {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.header-section {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    /* Adjust height based on your design preference */
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.navbar .dropdown-item:active {
+    background-color: #2575fc;
+    color: white;
+}
+
+.navbar .dropdown-menu {
+    left: -50px; /* Adjust this value to find the right position */
+}
+
+.card-image-container {
+    position: relative;
+    display: block; /* Ensure this is set so it can contain absolutely positioned elements */
+  }
+  
+
+.star-badge {
+    position: absolute;
+    bottom: 10px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+    background-color: rgba(255, 255, 255, 0.9); /* semi-transparent white */
+    border-radius: 15px; /* Adjust as needed for rounded corners */
+    padding: 5px 10px; /* Adjust as needed */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* subtle shadow */
+    display: flex;
+    align-items: center;
+    font-size: 0.9em; /* Adjust as needed */
+  }
+  
+  .star-button {
+    position: relative;
+    padding: 5px 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f0f0f0cc;
+    color: #333; /* Example text color */
+    cursor: pointer;
+}
+
+.star-button-starred {
+    background-color: #ffd700; /* Example color for starred */
+    color: #333; /* Example text color */
+}
+
+.comments-section {
+    background-color: #f8f9fa; /* Example background color */
+    margin-top: 20px;
+    border: 0px;
+}
+
+.comment.card {
+    background-color: #fff; 
+    padding: 10px;
+    border: 1px solid #ddd; 
+    border-radius: 5px; 
+}
+
+.accordion-button {
+    white-space: normal
+} 
+
+.pulse {
+    animation: pulse 0.5s; /* Adjust duration as needed */
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}

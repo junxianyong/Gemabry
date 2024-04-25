@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h2>Add Prompt</h2>
+    <form id="addPromptForm">
+        <div class="mb-3">
+            <label for="promptTitle" class="form-label">Prompt Title</label>
+            <input type="text" class="form-control" id="promptTitle" name="promptTitle" maxlength="120" required>
+        </div>
+        <div class="mb-3">
+            <label for="promptDescription" class="form-label">Prompt Description</label>
+            <input class="form-control" id="promptDescription" name="promptDescription" maxlength="120" required>
+        </div>
+        <div class="mb-3">
+            <label for="promptInstruction" class="form-label">Prompt Instruction</label>
+            <textarea type="text" class="form-control" id="promptInstruction" name="promptInstruction" rows="3" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="iconUpload" class="form-label">Icon</label>
+            <input type="file" class="form-control" id="iconUpload" name="promptIcon" accept="image/*">
+        </div>
+        <div class="mb-3">
+            <label for="temperatureSlider" class="form-label">Temperature:</label> <span
+                id="temperatureValue">0.5</span>
+            <input type="range" class="form-range" name="promptTemperature" min="0" max="1.0" value="1.0" step="0.01"
+                id="temperatureSlider">
+        </div>
+        <div class="mb-3">
+            <label for="modelSelect" class="form-label">Model</label>
+            <select class="form-control" id="modelSelect" name="promptModel">
+                <option value="gemini-pro">gemini-pro</option>
+                <option value="gemini-pro-vision">gemini-pro-vision</option>
+                <option value="gemini-1.5-pro-latest">gemini-1.5-pro-latest</option>
+            </select>
+        </div>
+
+            <label for="conversationPairs" class="form-label">Starter Conversation</label>
+            <ul id="conversationPairs" class="list-group mb-3">
+                <li class="list-group-item">
+                    <div class="input-group">
+                        <span class="input-group-text">User</span>
+                        <textarea style="resize: vertical" class="form-control" rows="2" required></textarea>
+                    </div>
+                    <div class="input-group mt-2">
+                        <span class="input-group-text">Model</span>
+                        <textarea style="resize: vertical" class="form-control" rows="2" required></textarea>
+                    </div>
+                </li>
+            </ul>
+        <div id="addMore" class="add-more-row mb-3">
+            <i class="bi bi-plus-square"></i> Add More Starter Conversation
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-submit">Submit</button>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#addMore').click(function () {
+            var newItem = $('.list-group-item:first').clone().find('textarea').val('').end(); // Clone and clear inputs
+
+            var deleteButton = $('<button>')
+                .addClass('delete-btn')
+                .html('&times; Remove Group')
+                .click(function () {
+                    $(this).parent().remove(); // Remove the list item on click
+                });
+
+            newItem.append(deleteButton);
+            $('#conversationPairs').append(newItem);
+        });
+
+        $('#temperatureSlider').on('input', function () {
+            $('#temperatureValue').text(parseFloat($(this).val()).toFixed(2));
+        });
+
+        $('#addPromptForm').submit(function (event) {
+            event.preventDefault();
+
+            var formData = new FormData(this);
+            var conversation = [];
+
+            $('#conversationPairs .list-group-item').each(function () {
+                var userText = $(this).find('textarea').eq(0).val();
+                var modelResponse = $(this).find('textarea').eq(1).val();
+                conversation.push({ userText, modelResponse });
+            });
+
+            formData.append('conversation', JSON.stringify(conversation)); // Serialize and append conversation as a string
+
+            // Submit form data via AJAX, including the file
+            $.ajax({
+                url: '/add_prompt',
+                type: 'POST',
+                processData: false,  // Important: don't process the files
+                contentType: false,  // Important: set contentType to false for boundary header
+                data: formData,
+                success: function () {
+                    window.location.href = '/library';  // Redirect to the library page on success
+                },
+                error: function (xhr) {
+                    alert('Error submitting form: ' + xhr.responseText);
+                }
+            });
+        });
+
+        // Initialize the temperature display with two decimal places
+        $('#temperatureValue').text(parseFloat($('#temperatureSlider').val()).toFixed(2));
+    });
+</script>
+{% endblock %}
