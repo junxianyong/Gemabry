@@ -19,9 +19,7 @@ Ensure you have Python 3.8 or higher installed on your system and an API Key fro
 `pip install -r requirements.txt` 
 
 #### API Key Configuration
-1.  Modify the `.env` file in the root directory of the cloned repository.
-2.  Replace `YOUR_API_KEY` on the following line with your own API Key:
-    `API_KEY=YOUR_API_KEY` 
+Modify the `.env` file in the root directory of the cloned repository and replace `YOUR_API_KEY` with a valid API Key.
     
 #### Running the Application
 Start exploring Gemabry by running:
