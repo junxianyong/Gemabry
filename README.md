@@ -19,8 +19,8 @@ Ensure you have Python 3.8 or higher installed on your system and an API Key fro
 `pip install -r requirements.txt` 
 
 #### API Key Configuration
-1.  Create a `.env` file in the root directory of the cloned repository.
-2.  Add the following line to the `.env` file:   
+1.  Modify the `.env` file in the root directory of the cloned repository.
+2.  Replace `YOUR_API_KEY` on the following line with your own API Key:
     `API_KEY=YOUR_API_KEY` 
     
 #### Running the Application
